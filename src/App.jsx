@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import Cookie from './components/Cookie'
 import { motion, AnimatePresence } from 'framer-motion';
 import Header from './components/Header'
@@ -83,16 +83,24 @@ function App() {
   function saveLocalStorage(){
     localStorage.setItem('cart', JSON.stringify(cart))
   }
+
+  const [mostrarModal, setMostrarModal] = useState(false);
+  const cartTotal = useMemo(() => cart.reduce((total, item) => total + item.quantity * item.price, 0), [cart]);
+useEffect(() => {
+  document.body.style.overflow = mostrarModal ? 'hidden' : 'auto';
+}, [mostrarModal]);
+
   return (
     <>
     <Header 
-        cart={cart} 
-        removeFromCart={removeFromCart}
-        decreaseQuantity={decreaseQuantity}
-        increaseQuantity={increaseQuantity}
-        clearCart={clearCart}
-    
-        />
+  cart={cart} 
+  removeFromCart={removeFromCart}
+  decreaseQuantity={decreaseQuantity}
+  increaseQuantity={increaseQuantity}
+  clearCart={clearCart}
+  setMostrarModal={setMostrarModal}
+/>
+
       <main>
         
       <section id="productos" className="align-items-center pt-10 lg:pt-20 pb-4 lg:pb-16 px-6">
@@ -113,9 +121,32 @@ function App() {
   </div>
 </section>
 
+{mostrarModal && (
+  <div className="fixed inset-0 z-50 backdrop-blur-sm bg-yellow-950/35 flex items-center justify-center">
+    <div className="bg-amber-100 rounded-xl p-6 w-11/12 max-w-md text-center shadow-lg relative">
+      <h2 className="text-xl font-bold text-orange-950 mb-1 lg:mb-2">Total a pagar: ${cartTotal}</h2>
+      <p className="text-orange-950 text-lg mb-4">
+        mmm
+      </p>
+      <p className="text-orange-950 text-lg mb-4">
+        alias: biteme.vcp
+      </p>
+      <motion.button
+        whileTap={{ scale: 0.95 }}
+        onClick={() => setMostrarModal(false)}
+        className="bg-[#fcb9c6] text-black px-4 py-2 rounded hover:bg-orange-800 transition"
+      >
+        Cerrar
+      </motion.button>
+    </div>
+  </div>
+)}
+
       </main>
+   
 
       <AnimatePresence>
+      
   {toast && (
     <motion.div
       key="toast"

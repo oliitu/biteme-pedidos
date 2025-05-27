@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { motion } from "framer-motion"; 
 
 
-export default function Header({ cart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart }) {
+export default function Header({ cart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart, setMostrarModal }) {
   const isEmpty = useMemo(() => cart.length === 0, [cart]);
   const cartTotal = useMemo(() => cart.reduce((total, item) => total + item.quantity * item.price, 0), [cart]);
 
@@ -100,7 +100,7 @@ export default function Header({ cart, removeFromCart, increaseQuantity, decreas
         </motion.button>
       </div>
 
-      <motion.button
+      <motion.button onClick={() => setMostrarModal(true)}
         whileTap={{ scale: 0.95 }}
         className="btn w-full mt-3 p-2 bg-yellow-900  text-white rounded hover:bg-yellow-950"
       >
@@ -109,7 +109,7 @@ export default function Header({ cart, removeFromCart, increaseQuantity, decreas
       
 
 
-
+{/* el otro */}
 
 
 
@@ -155,7 +155,7 @@ export default function Header({ cart, removeFromCart, increaseQuantity, decreas
         <motion.button
           whileTap={{ scale: 0.95 }}
           onClick={clearCart}
-          className="font-poppins mt-2  bg-[#fcb9c6] hover:bg-[#de8a9b] px-3 py-2 mb-3 rounded-lg text-sm"
+          className="font-poppins mt-2  bg-[#fcb9c6] hover:bg-[#de8a9b] px-3 py-2 mb-4 rounded-lg text-sm"
         >
           Vaciar Carrito
         </motion.button>
@@ -163,12 +163,16 @@ export default function Header({ cart, removeFromCart, increaseQuantity, decreas
         <p className="self-start font-semibold">
           Total a pagar: <span className="font-bold">${cartTotal}</span>
         </p>
-      <motion.button
-        whileTap={{ scale: 0.95 }}
-        className="btn w-50 self-start mt-1 p-2 bg-yellow-900  text-white rounded hover:bg-yellow-950"
-      >
-        Pagar
-      </motion.button>
+        <div className="flex items-center justify-center">
+  <motion.button
+    onClick={() => setMostrarModal(true)}
+    className="text-white bg-[#6e3712] font-poppins min-w-50 hover:bg-yellow-950 mt-2 rounded-sm text-base px-5 py-2.5 text-center"
+  >
+    Pagar
+  </motion.button>
+</div>
+
+    
       </div>
 
       </div>
