@@ -15,7 +15,7 @@ export default function Cookie({ cookie, addToCart }) {
           transition={{ duration: 0.3 }}
           src={`/img/${image}.png`}
           alt="Cookie"
-          className="drop-shadow-lg hover:drop-shadow-xl rounded-lg h-18 xs:h-24 sm:h-28 md:h-36 lg:h-48 mx-auto object-contain mb-4"
+          className="drop-shadow-lg hover:drop-shadow-xl rounded-lg h-18 xs:h-24 sm:h-28 md:h-36 lg:h-48 mx-auto object-contain mt-2 lg:mt-0 mb-2 lg:mb-4"
         />
         <h3 className="font-pacifico text-orange-950 text-xl sm:text-2xl lg:text-3xl mb-2">
           {name}

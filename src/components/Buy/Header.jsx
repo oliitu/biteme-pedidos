@@ -9,14 +9,14 @@ export default function Header({ cart, removeFromCart, increaseQuantity, decreas
   return (
     <header className="pt-5 header w-full">
   <div className="max-w-screen-xl align-bottom mx-auto w-full flex justify-between items-center px-4">
-    <a href="index.html">
-      <img className="img-fluid mb-4 mt-10 lg:mt-28 lg:mb-5 w-16 md:w-32 lg:w-40" src="/img/logonobg.png" alt="imagen logo" />
+    <a onClick={clearCart} href="/landing/index.html" className="mb-4 mt-10 lg:mt-28 lg:mb-5"> 
+      <img className="img-fluid w-16 md:w-32 lg:w-40" src="/img/logonobg.png" alt="imagen logo" />
     </a>
-    <div className="carrito relative">
+    <div className="mt-10 lg:mt-48 lg:mb-5 carrito relative">
     <img
   src="/img/carrito.png"
   alt="imagen carrito"
-  className="w-6 md:w-9 mt-10 lg:mt-48 lg:mb-5 lg:w-15 object-contain "
+  className="w-6 md:w-9  lg:w-15 object-contain "
 />
       
 <div
