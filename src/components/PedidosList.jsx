@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs, query, orderBy } from "firebase/firestore"; // 👈 agrega query y orderBy
 
-import { db } from "../../firebase";
+import { db } from "../firebase";
 
 function PedidosList() {
   const [pedidos, setPedidos] = useState([]);
